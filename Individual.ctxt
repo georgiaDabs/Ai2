@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=size
+comment0.target=Individual(int)
+comment1.params=
+comment1.target=void\ printTour()
+comment2.params=current
+comment2.target=int\ getNext(int)
+comment3.params=array
+comment3.target=int\ getCost(int[][])
+comment4.params=
+comment4.target=int\ getSize()
+comment5.params=sublist\ parent
+comment5.target=Individual(java.util.ArrayList,\ Individual)
+comment6.params=
+comment6.target=java.util.ArrayList\ getChromosomes()
+numComments=7

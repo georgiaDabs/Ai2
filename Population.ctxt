@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=size\ sizeOfTour
+comment0.target=Population(int,\ int)
+comment1.params=s
+comment1.target=Individual\ getNewRandom(int)
+comment2.params=
+comment2.target=void\ printPop()
+comment3.params=array
+comment3.target=int\ getTotalCost(int[][])
+comment4.params=array
+comment4.target=java.util.ArrayList\ getParents(int[][])
+comment5.params=total\ array
+comment5.target=Individual\ getParent(int,\ int[][])
+comment6.params=parent1\ parent2\ size
+comment6.target=Population(Individual,\ Individual,\ int)
+numComments=7
