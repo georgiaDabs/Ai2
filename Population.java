@@ -11,6 +11,14 @@ public class Population
             pop.add(getNewRandom(sizeOfTour));
         }
     }
+    public Population (){
+        pop=new ArrayList<Individual>();
+    }
+    public void remove(ArrayList<Individual> removeList){
+        for(Individual ind:removeList){
+            pop.remove(ind);
+        }
+    }
     public Individual getNewRandom(int s){
         return new Individual(s);
     }
@@ -96,5 +104,12 @@ public class Population
             }
         }
         return best;
+    }
+    public ArrayList<Individual> getPopulation(){
+        return pop;
+    }
+    public void addToPop(ArrayList<Individual> popToBeAdded){
+        pop.addAll(popToBeAdded);
+        size=pop.size();
     }
 }

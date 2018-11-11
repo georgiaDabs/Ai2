@@ -62,19 +62,21 @@ public class Search
     System.out.println("best in pop............");
     bests.add(pop.getBest(array));
     System.out.println("best cost:"+pop.getBest(array).getCost(array));
-    
+    Population newPop=new Population();
+    for(int j=0;j<5;j++){
     ArrayList<Individual> parents=pop.getParents(array);
     System.out.println("---------------PARENT 1---------------------");
     parents.get(0).printTour();
     System.out.println("/n---------------PARENT 2----------------------");
     parents.get(1).printTour();
     System.out.println("-------------mating-------------------");
-    Population pop2=new Population(parents.get(0),parents.get(1),sizeOfPop);
+    Population pop2=new Population(parents.get(0),parents.get(1),sizeOfPop/5);
     System.out.println("-------------------new Population---------------------");
     pop2.printPop();
-   
-    pop2.mutate(20);
-    pop=pop2;
+    newPop.addToPop(pop2.getPopulation());
+}
+    newPop.mutate(20);
+    pop=newPop;
 }
     System.out.println("----------best in every gen------------");
     for(Individual ind:bests){

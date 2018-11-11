@@ -1,12 +1,13 @@
 #BlueJ class context
-comment0.params=link\ sizeOfPop
-comment0.target=Search(java.lang.String,\ int)
-comment1.params=size\ sizeOfTour
-comment1.target=Population\ firstGen(int,\ int)
-comment2.params=
-comment2.target=void\ printArray()
+comment0.target=Search
+comment1.params=link\ sizeOfPop
+comment1.target=Search(java.lang.String,\ int)
+comment2.params=size\ sizeOfTour
+comment2.target=Population\ firstGen(int,\ int)
 comment3.params=
-comment3.target=Individual\ getBest()
+comment3.target=void\ printArray()
 comment4.params=
-comment4.target=int\ getBestCost()
-numComments=5
+comment4.target=Individual\ getBest()
+comment5.params=
+comment5.target=int\ getBestCost()
+numComments=6

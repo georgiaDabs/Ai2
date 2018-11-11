@@ -2,7 +2,7 @@
 public class Controller
 {
    public Controller(){
-       String link="J:/SearchFiles/SearchFile26.txt";
+       String link="C:/Users/GIIIIIIINGEEEEEEE/AISearch/AISearchtestcase.txt";
        Search s1=new Search(link,500);
        Search s2=new Search(link,500);
        Search s3=new Search(link,500);
