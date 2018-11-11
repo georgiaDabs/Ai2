@@ -14,6 +14,9 @@ public class Individual
             }
         }
     }
+    public Individual(ArrayList<Integer> tour){
+        this.tour=tour;
+    }
     public void printTour(){
         for(Integer i:tour){
             System.out.print(i+",");
@@ -78,10 +81,30 @@ public class Individual
         }else{
             sublist.addAll(tour.subList(start,start+length));
         }
-        System.out.println("parent");
-        printTour();
-        System.out.println("chromosomes passed");
-        System.out.println(sublist);
+        //System.out.println("parent");
+        //printTour();
+        //System.out.println("chromosomes passed");
+        //System.out.println(sublist);
         return sublist;
+    }
+    public void mutate(){
+        Random rand=new Random();
+        int index1=rand.nextInt(tour.size()-1);
+        int city1=tour.get(index1);
+        int index2=index1;
+        while(index2==index1){
+            index2=rand.nextInt(tour.size()-1);
+        }
+        int city2=tour.get(index2);
+        tour.set(index1,city2);
+        tour.set(index2,city1);
+    }
+    public Individual getCopy(){
+        ArrayList<Integer> tourCopy=new ArrayList<Integer>();
+        for(Integer i:tour){
+            tourCopy.add(i);
+        }
+        Individual copy=new Individual(tourCopy);
+        return copy;
     }
 }

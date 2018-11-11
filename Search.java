@@ -4,6 +4,8 @@ public class Search
 {
     int[][] array;
     private int sizeOfPop;
+    private Individual best=null;
+    private int bestCost=-1;
    public Search(String link, int sizeOfPop){
      this.sizeOfPop=sizeOfPop;
      int size=0;
@@ -52,8 +54,15 @@ public class Search
         System.out.println("file not found");
     }
     Population pop=firstGen(sizeOfPop,size);
+    int numberOfGen=100;
+    ArrayList<Individual> bests=new ArrayList<Individual>();
+    for(int i=0;i<numberOfGen;i++){
     pop.printPop();
     System.out.println("total cost:"+pop.getTotalCost(array));
+    System.out.println("best in pop............");
+    bests.add(pop.getBest(array));
+    System.out.println("best cost:"+pop.getBest(array).getCost(array));
+    
     ArrayList<Individual> parents=pop.getParents(array);
     System.out.println("---------------PARENT 1---------------------");
     parents.get(0).printTour();
@@ -61,6 +70,26 @@ public class Search
     parents.get(1).printTour();
     System.out.println("-------------mating-------------------");
     Population pop2=new Population(parents.get(0),parents.get(1),sizeOfPop);
+    System.out.println("-------------------new Population---------------------");
+    pop2.printPop();
+   
+    pop2.mutate(20);
+    pop=pop2;
+}
+    System.out.println("----------best in every gen------------");
+    for(Individual ind:bests){
+        ind.printTour();
+        if(bestCost==-1){
+                best=ind;
+                bestCost=ind.getCost(array);
+            }else if(ind.getCost(array)<bestCost){
+                best=ind;
+                bestCost=ind.getCost(array);
+            }
+    }
+    System.out.println("------------the best-------------------");
+    best.printTour();
+    System.out.println("cost:"+best.getCost(array));
     }
     public Population firstGen(int size, int sizeOfTour){
         return new Population(size,sizeOfTour);
@@ -69,5 +98,11 @@ public class Search
         for(int[] row: array){
             System.out.println(row);
         }
+    }
+    public Individual getBest(){
+        return best;
+    }
+    public int getBestCost(){
+        return bestCost;
     }
 }

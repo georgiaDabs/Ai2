@@ -57,17 +57,44 @@ public class Population
                 start+=length;
             }else{
                 parent=ind;
+                break;
             }
         }
         return parent;
     }
     public Population(Individual parent1,Individual parent2,int size){
         pop=new ArrayList<Individual>();
-       /* while(pop.size()!=size){
-            
-        }*/
-        for(int i=0;i<10;i++){
-            parent1.getChromosomes();
+        while(pop.size()!=size){
+            Individual ind=new Individual(parent1.getChromosomes(),parent2);
+            pop.add(ind);
         }
+        
+    }
+    public void mutate(int mutationRate){
+        Random rand=new Random();
+        System.out.println("----------mutating population-------------");
+        for(Individual ind:pop){
+            int r=rand.nextInt(100);
+            if(r<mutationRate){
+                System.out.println("------------------mutaing----------------------------");
+                ind.printTour();
+                ind.mutate();
+                ind.printTour();
+            }
+        }
+    }
+    public Individual getBest(int[][] array){
+        int cost=-1;
+        Individual best=null;
+        for(Individual ind:pop){
+            if(cost==-1){
+                best=ind;
+                cost=ind.getCost(array);
+            }else if(ind.getCost(array)<cost){
+                best=ind;
+                cost=ind.getCost(array);
+            }
+        }
+        return best;
     }
 }
