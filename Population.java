@@ -29,29 +29,29 @@ public class Population
             System.out.println(" ");
         }
     }
-    public int getTotalCost(int[][] array){
-        int cost=0;
+    public float getTotalCost(int[][] array){
+        float cost=0;
         for(Individual ind:pop){
-            cost+=ind.getCost(array);
+            cost+=(1.0/(float)ind.getCost(array));
         }
         return cost;
     }
     public ArrayList<Individual> getParents(int[][] array){
-        System.out.println("get parents");
+        //System.out.println("get parents");
         ArrayList<Individual> parents=new ArrayList<Individual>();
         
-        int total=getTotalCost(array);
+        float total=getTotalCost(array);
         while(parents.size()!=2){
             Individual ind=getParent(total,array);
             //System.out.println("trying for parent");
             if(!parents.contains(ind)){
-                System.out.println("got parent");
+              //  System.out.println("got parent");
                 parents.add(ind);
             }
         }
         return parents;
     }
-    public Individual getParent(int total,int[][] array){
+    public Individual getParent(float total,int[][] array){
         
         Individual parent=null;
         Random rand=new Random();
@@ -59,8 +59,8 @@ public class Population
         //System.out.println("float:"+r);
         float start=0;
         for(Individual ind:pop){
-            float length=(((float)ind.getCost(array))/(float)total);
-            System.out.println("start:"+start+" end:"+(start+length)+" float:"+r);
+            float length=((((float)1.0/(float)ind.getCost(array)))/(float)total);
+         //   System.out.println("start:"+start+" end:"+(start+length)+" float:"+r);
             if(r>(start+length)){
                 start+=length;
             }else{
@@ -78,16 +78,17 @@ public class Population
         }
         
     }
-    public void mutate(int mutationRate){
+    public void mutate(float mutationRate){
         Random rand=new Random();
-        System.out.println("----------mutating population-------------");
+       // System.out.println("----------mutating population-------------");
         for(Individual ind:pop){
-            int r=rand.nextInt(100);
+            float r=rand.nextFloat();
+            r=r*100;
             if(r<mutationRate){
-                System.out.println("------------------mutaing----------------------------");
-                ind.printTour();
+              //  System.out.println("------------------mutaing----------------------------");
+               // ind.printTour();
                 ind.mutate();
-                ind.printTour();
+                //ind.printTour();
             }
         }
     }
@@ -103,7 +104,7 @@ public class Population
                 cost=ind.getCost(array);
             }
         }
-        return best;
+        return best.getCopy();
     }
     public ArrayList<Individual> getPopulation(){
         return pop;

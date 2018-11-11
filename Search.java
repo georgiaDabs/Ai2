@@ -54,31 +54,33 @@ public class Search
         System.out.println("file not found");
     }
     Population pop=firstGen(sizeOfPop,size);
-    int numberOfGen=100;
+    int numberOfGen=1000;
     ArrayList<Individual> bests=new ArrayList<Individual>();
     for(int i=0;i<numberOfGen;i++){
-    pop.printPop();
-    System.out.println("total cost:"+pop.getTotalCost(array));
-    System.out.println("best in pop............");
+   // pop.printPop();
+    //System.out.println("total cost:"+pop.getTotalCost(array));
+    //System.out.println("best in pop............");
     bests.add(pop.getBest(array));
-    System.out.println("best cost:"+pop.getBest(array).getCost(array));
+   // System.out.println("best cost:"+pop.getBest(array).getCost(array));
     Population newPop=new Population();
-    for(int j=0;j<5;j++){
+    for(int j=0;j<10;j++){
     ArrayList<Individual> parents=pop.getParents(array);
-    System.out.println("---------------PARENT 1---------------------");
-    parents.get(0).printTour();
-    System.out.println("/n---------------PARENT 2----------------------");
-    parents.get(1).printTour();
-    System.out.println("-------------mating-------------------");
-    Population pop2=new Population(parents.get(0),parents.get(1),sizeOfPop/5);
-    System.out.println("-------------------new Population---------------------");
-    pop2.printPop();
+  //  System.out.println("---------------PARENT 1---------------------");
+   // parents.get(0).printTour();
+  //  System.out.println("/n---------------PARENT 2----------------------");
+    //parents.get(1).printTour();
+  //  System.out.println("-------------mating-------------------");
+    Population pop2=new Population(parents.get(0),parents.get(1),sizeOfPop/10);
+  //  System.out.println("-------------------new Population---------------------");
+  //  pop2.printPop();
     newPop.addToPop(pop2.getPopulation());
+    pop.remove(parents);
+   // newPop.addToPop(parents);
 }
-    newPop.mutate(20);
+    newPop.mutate((float)1.0);
     pop=newPop;
 }
-    System.out.println("----------best in every gen------------");
+   // System.out.println("----------best in every gen------------");
     for(Individual ind:bests){
         ind.printTour();
         if(bestCost==-1){
@@ -89,9 +91,9 @@ public class Search
                 bestCost=ind.getCost(array);
             }
     }
-    System.out.println("------------the best-------------------");
-    best.printTour();
-    System.out.println("cost:"+best.getCost(array));
+ //   System.out.println("------------the best-------------------");
+ //   best.printTour();
+ //   System.out.println("cost:"+best.getCost(array));
     }
     public Population firstGen(int size, int sizeOfTour){
         return new Population(size,sizeOfTour);
